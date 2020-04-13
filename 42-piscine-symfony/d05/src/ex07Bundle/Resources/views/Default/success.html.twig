@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EX07</title>
+</head>
+<body>
+	{% for label, messages in app.flashes(['error', 'success']) %}
+	    {% for message in messages %}
+	        <div class="alert alert-{{ label }}">
+	            {{ message }}
+	        </div>
+	    {% endfor %}
+	{% endfor %}
+	<table border="1" >
+		<thead>
+			<th>id</th>
+			<th>username</th>
+			<th>name</th>
+			<th>email</th>
+			<th>enable</th>
+			<th>birthdate</th>
+			<th>address</th>
+			<th>action</th>
+		</thead>
+		<tbody>
+			{% for item in users %}
+			<tr>
+				<td>{{ item.id }}</td>
+				<td>{{ item.username }}</td>
+				<td>{{ item.name }}</td>
+				<td>{{ item.email }}</td>
+				<td>{{ item.enable }}</td>
+				<td>{{ item.birthdate|date('d/m/Y') }}</td>
+				<td>{{ item.address }}</td>
+				<td><a href="{{ path('ex07_default_edit', {'id': item.id }) }}">Edit</a> - <a href="{{ path('ex07_default_delete', {'id': item.id }) }}">Delete</a></td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</body>
+</html>

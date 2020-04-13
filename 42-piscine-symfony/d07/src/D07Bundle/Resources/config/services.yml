@@ -1,0 +1,4 @@
+services:
+   # d07.example:
+   #     class: D07Bundle\Example
+   #     arguments: ["number"]

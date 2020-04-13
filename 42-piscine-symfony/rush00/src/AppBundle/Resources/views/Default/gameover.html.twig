@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+  <!-- Main component for a primary marketing message or call to action -->  
+  <h1>Moviemon</h1>
+
+  <div class="jumbotron">
+    <div class="row text-center">
+	    <p>You Lose.</p>
+      <div class="col-md-3">
+        <a href="{{ path('new_game') }}" class="btn btn-primary">New</a><br><br>
+      </div>
+      <div class="col-md-3">
+        <a href="{{ path('save_game') }}" class="btn btn-success">Save</a><br><br>
+      </div>
+	    {% if sessions is defined %}
+        <div class="col-md-3">
+           <span>Load</span><br>
+           {% for item in sessions %}
+           <a href="{{ path('load_game', {'name':item}) }}" class="btn btn-warning btn-xs">{{ item }}</a><br>
+           {% endfor %}
+         </div>
+         <div class="col-md-3">
+           <a href="{{ path('cancel_game') }}" class="btn btn-danger">Cancel</a>
+         </div>
+      </div>
+	    {% endif %}
+	{%if form is defined%}
+		{{form(form)}}
+	{%endif%}
+
+	{%if error is defined%}
+		{{error}}
+	{%endif%}
+
+	{%if player is defined%}
+		bonjour {{player}}
+	{%endif%}
+  </div>
+{% endblock %}

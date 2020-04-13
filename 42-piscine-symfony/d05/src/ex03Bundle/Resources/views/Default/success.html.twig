@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EX03</title>
+</head>
+<body>
+	<table border="1" >
+		<thead>
+			<th>id</th>
+			<th>username</th>
+			<th>name</th>
+			<th>email</th>
+			<th>enable</th>
+			<th>birthdate</th>
+			<th>address</th>
+		</thead>
+		<tbody>
+			{% for item in users %}
+			<tr>
+				<td>{{ item.id }}</td>
+				<td>{{ item.username }}</td>
+				<td>{{ item.name }}</td>
+				<td>{{ item.email }}</td>
+				<td>{{ item.enable }}</td>
+				<td>{{ item.birthdate|date('d/m/Y') }}</td>
+				<td>{{ item.address }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</body>
+</html>

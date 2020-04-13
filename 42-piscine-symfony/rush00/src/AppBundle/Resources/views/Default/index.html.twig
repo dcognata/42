@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+  <!-- Main component for a primary marketing message or call to action -->  
+  <h1>Moviemon</h1>
+
+  <div class="jumbotron">
+    <div class="row text-center">
+      <div class="col-md-3">
+        <h2>Nouvelle partie</h2>
+        <a href="{{ path('new_game') }}" class="btn btn-lg btn-primary">New</a><br><br>
+      </div>
+      {% if app.session.get('playerName') is not null %}
+      <div class="col-md-3">
+        <h2>Sauvegarder</h2>
+        <a href="{{ path('save_game') }}" class="btn btn-lg btn-success">Save</a><br><br>
+      </div>
+      {% endif %}
+      <div class="col-md-3">
+        <h2>Load</h2>
+        {% if sessions is not defined or sessions|length <= 0 %}
+          <p>Pas de parties sauvegardées</p>
+        {% endif %}
+		{% if sessions is defined %}
+			{% for item in sessions %}
+			<a href="{{ path('load_game', {'name':item}) }}" class="btn btn-lg btn-warning btn-xs">{{ item }}</a><br>
+			{% endfor %}
+        {% endif %}
+      </div>
+      {% if app.session.get('playerName') is not null %}
+      <div class="col-md-3">
+        <h2>Retourner a la carte</h2>
+        <a href="{{ path('cancel_game') }}" class="btn btn-lg btn-danger">Cancel</a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

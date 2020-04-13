@@ -1,0 +1,1 @@
+L'authentification : chaque connexion SSH vérifie l'identité du serveur (par sa clé d'hôte ~/.ssh/known_hosts) puis celle du client (par mot de passe ou clé publique ~/.ssh/authorized_keys).

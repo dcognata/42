@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% block title %}Moviemon{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  </head>
+
+  <body style="padding-top:80px">
+    <div class="container">
+      <!-- Static navbar -->
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ path('homepage') }}">Moviemon</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="{{ path('homepage') }}">Accueil</a></li>
+              {% if app.session.get('playerName') is not null %}
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Moviedeck <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  {% for item in app.session.get('moviemons') %}
+                    <li><a href="#">{{ item }}</a></li>
+                  {% endfor %}
+                </ul>
+              </li>
+              {% endif %}
+            </ul>
+            {% if app.session.get('playerName') is not null %}
+            <div class="nav navbar-nav navbar-right">
+              <p class="navbar-text">{{ app.session.get('playerName')|upper }} : {{ app.session.get('player_life') }} <i class="fas fa-heart"></i> | Pos: {{ app.session.get('playerPos').x }}x,{{ app.session.get('playerPos').y }}y</p> 
+            </div>
+            {% endif %}
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="{{ path('new_game') }}">New <span class="sr-only">(current)</span></a></li>
+              {% if app.session.get('playerName') is not null %}
+              <li class="active"><a href="{{ path('save_game') }}">Save <span class="sr-only">(current)</span></a></li>
+              <li class="active"><a href="{{ path('cancel_game') }}">Cancel <span class="sr-only">(current)</span></a></li>
+              {% endif %}
+            </ul>
+          </div><!--/.container-fluid -->
+        </div><!--/.container-fluid -->
+      </nav>
+
+      {% block body %}{% endblock %}
+
+      <footer>
+        <p>&copy; {{ ""|date('Y')}} nbelouni, dcognata.</p>
+      </footer>
+    </div> <!-- /container -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+

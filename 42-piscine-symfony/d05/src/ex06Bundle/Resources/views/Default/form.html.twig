@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EX06</title>
+</head>
+<body>
+	{% for label, messages in app.flashes(['error', 'success']) %}
+	    {% for message in messages %}
+	        <div class="alert alert-{{ label }}">
+	            {{ message }}
+	        </div>
+	    {% endfor %}
+	{% endfor %}
+	<h1>Formulaire</h1>
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+	{{ form_end(form) }}
+</body>
+</html>

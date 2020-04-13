@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fight{% endblock %}
+
+{% block body %}
+<div class="row">
+
+	<div class="col-md-5 col-xs-12">
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		  	<img class="panel-img-top" src="{{ asset('img/marker.png')}}" alt="Card image cap">
+		  	<h2>Player</h2>
+		  </div>
+		  <div class="panel-body">
+		    <p class="card-text">
+			<strong>Attaque :</strong> 1
+			<strong>PV :</strong> {{ player_life }}<br>
+		    </p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="col-md-2 col-xs-12">
+    	<a href="{{ path('game_atq') }}" class="btn btn-lg btn-danger">attack</a>
+	</div>
+
+	<div class="col-md-5 col-xs-12">
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		  	<img class="panel-img-top" src="{{ movie['img'] }}" alt="Card image cap">
+		  	<h2>{{ movie['title'] }}</h2>
+		  </div>
+		  <div class="panel-body">
+		    <p class="card-text">
+				<strong>Attaque :</strong> {{movie['atq']}}<br>
+				<strong>Esquive :</strong>  {{movie['esq']}}%<br>
+				<strong>PV :</strong> {{movie['pv']}}
+		    </p>
+		  </div>
+		</div>
+	</div>
+
+</div>
+{% endblock %}

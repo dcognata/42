@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Jeu{% endblock %}
+
+{% block body %}
+  <div class="jumbotron">
+    {% set map = app.session.get('map') %}
+    {% set cities = app.session.get('cities') %}
+ 	<table class="table table-dark">
+	  <tbody>
+	  	{% for key,item in map %}
+	    <tr class="text-center">
+	   	  {% for k,ite in item %}
+	      <td width="20%" height="200"
+		      {% if app.session.get('playerPos').x == k and app.session.get('playerPos').y == key %}
+		      	style="background-size: 100%;
+		      			background-repeat: no-repeat;
+		      			background-image:url('{{ asset('img/marker.png')}}')"
+		      {% else %}
+		      	bgcolor="{{ ite }}"
+		      {% endif %}>
+		      <strong>{{ cities[key][k] }}</strong><br>
+		      	{{ key }}X ; {{ k }}Y
+	      </td>
+	      {% endfor %}
+	    </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>
+  </div>
+{% endblock %}

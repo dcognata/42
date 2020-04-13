@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fight{% endblock %}
+
+{% block body %}
+
+	{%for movie in all_movies%}
+
+<div>
+		{%set is_captured = 0%}
+		{%for c in curr_movies%}
+			{%if movie.data.imdbID is same as(c.id) %}
+				{%set is_captured = 1 %}
+				<img src="{{movie.data.Poster}}"/>
+				<p>{{movie.data.Title}}</p>
+			{% endif %}
+
+		{% endfor %}
+		{% if is_captured == 0 %}
+			<img style="filter: grayscale(100%)  blur(5px);" src="{{movie.data.Poster}}"/>
+		{% endif %}
+</div>
+	{% endfor %}
+
+{% endblock %}
+

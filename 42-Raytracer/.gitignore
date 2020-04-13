@@ -1,0 +1,7 @@
+rt
+SLD2
+**/*.[oa]
+**/*~
+**/.nfs*
+tmp/
+.DS_Store

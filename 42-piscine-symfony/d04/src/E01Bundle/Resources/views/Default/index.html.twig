@@ -1,0 +1,7 @@
+{% extends '@E01/Default/layout.html.twig' %}
+
+{% block content %}
+	{% for cat in categories %}
+		<a href="{{ path('e01_default_page', {'category': cat}) }}">{{ cat }}</a><br>
+	{% endfor %}
+{% endblock %}

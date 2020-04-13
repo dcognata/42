@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Post</title>
+</head>
+<body>
+{% block body %}
+{% endblock %}
+{% if logged == false %}
+	{{ include('@D09/Post/form.html.twig') }}
+{% endif %}
+</body>
+</html>

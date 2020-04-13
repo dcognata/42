@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ex03</title>
+</head>
+<body>
+	<table>
+	
+		<thead>
+			<tr>
+	    		<th>black</th>
+	    		<th>red</th>
+	    		<th>blue</th>
+	    		<th>green</th>
+	  		</tr>
+		</thead>
+		<tbody>
+			{% for key,color in colors %}
+			<tr>
+				<td style="background-color:rgb({{ colors[key][0][0] }}, {{ colors[key][0][1] }}, {{ colors[key][0][2] }})" height="40" width="80">
+					rgb({{ colors[key][0][0] }}, {{ colors[key][0][1] }}, {{ colors[key][0][2] }})
+				</td>
+				<td style="background-color:rgb({{ colors[key][1][0] }}, {{ colors[key][1][1] }}, {{ colors[key][1][2] }})" height="40" width="80">
+					rgb({{ colors[key][1][0] }}, {{ colors[key][1][1] }}, {{ colors[key][1][2] }})
+				</td>
+				<td style="background-color:rgb({{ colors[key][2][0] }}, {{ colors[key][2][1] }}, {{ colors[key][2][2] }})" height="40" width="80">
+					rgb({{ colors[key][2][0] }}, {{ colors[key][2][1] }}, {{ colors[key][2][2] }})
+				</td>
+				<td style="background-color:rgb({{ colors[key][3][0] }}, {{ colors[key][3][1] }}, {{ colors[key][3][2] }})" height="40" width="80">
+					rgb({{ colors[key][3][0] }}, {{ colors[key][3][1] }}, {{ colors[key][3][2] }})
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+			
+	</table>
+</body>
+</html>

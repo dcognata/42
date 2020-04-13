@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EX00</title>
+</head>
+<body>
+	{% for label, messages in app.flashes(['error', 'success']) %}
+	    {% for message in messages %}
+	        <div class="alert alert-{{ label }}">
+	            {{ message }}
+	        </div><br>
+	    {% endfor %}
+	{% endfor %}
+	<a href="{{ path('ex00_default_generate') }}">Generate</a><br>
+</body>
+</html>

@@ -1,0 +1,4 @@
+d07:
+    resource: "@D07Bundle/Controller/"
+    type:     annotation
+    prefix:   /

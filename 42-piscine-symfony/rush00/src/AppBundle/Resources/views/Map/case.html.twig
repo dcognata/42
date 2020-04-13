@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Jeu{% endblock %}
+
+{% block body %}
+<div class="row">
+  <div class="col-md-10">
+  {% set map = app.session.get('map') %}
+    <table class="table table-dark">
+      <tbody>
+        {% for key,item in map %}
+        <tr>
+          {% for k,ite in item %}
+          <td width="20%" height="200" class="text-center" 
+            {% if app.session.get('playerPos').x == k and app.session.get('playerPos').y == key %}
+              style="background-size: 100%;
+                  background-repeat: no-repeat;
+                  background-image:url('{{ asset('img/marker.png')}}')"
+            {% else %}
+              bgcolor="{{ ite }}"
+            {% endif %}>
+            {% if app.session.get('playerPos').x == k and app.session.get('playerPos').y == key %}
+              {% if app.session.get('firstMove') != true %}<a href="{{ path('map_game_fight') }}" class="btn btn-danger">Fight</a>{% endif %}
+            {% endif %}
+          </td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-2">
+    <div class="jumbotron" style="display:flex; flex-direction: column; align-items:center">
+      <div>
+        <a href="{{ path("map_game_direct", {'direction' : 1})}}">top</a>
+      </div>
+      <div style="display:inherit; flex-direction: row; align-items:center">
+        <a href="{{ path("map_game_direct", {'direction' : 0})}}">left</a>
+        <div style="width:100px; height:100px; background-color:{{color}};display:inherit; align-items:center; justify-content: center;">
+          {% if app.session.get('firstMove') != true %}<a href="{{ path('map_game_fight') }}" class="btn btn-danger">Fight</a>{% endif %}
+        </div>
+        <a href="{{ path("map_game_direct", {'direction' : 2})}}">right</a>
+      </div>
+      <div>
+        <a href="{{ path("map_game_direct", {'direction' : 3})}}">bottom</a>
+      </div>
+    </div>
+    <div class="text-center">
+      <a href="{{ path('map_game') }}" class="btn btn-lg btn-success">Voir la map</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

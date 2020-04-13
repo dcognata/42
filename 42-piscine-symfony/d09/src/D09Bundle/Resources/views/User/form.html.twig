@@ -1,0 +1,43 @@
+<form action="#" method="post" id="form">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="_username" />
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="_password" />
+
+    <button type="submit">login</button>
+</form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+var toSend = false;
+$('#form').submit( function(event) {
+    event.preventDefault();
+    var $this = $(this);
+    var us = ($('#username').val()) ? $('#username').val() : false;
+    var pw = ($('#password').val()) ? $('#password').val() : false;
+    $.ajax({
+        url: '{{ path('login') }}',
+        type: 'POST',
+        data: {'username': us,'password': pw},
+        statusCode: {
+            200: function(response) {
+                $.ajax({
+                    url: '{{ path('login_check') }}',
+                    type: 'POST',
+                    contentType: "application/json",
+                    dataType: 'json',
+                    data: JSON.stringify({username: us, password: pw}),
+                    success : function(response){
+                        window.location= "{{ path('post') }}";
+                    },
+               });
+            },
+            201: function(response) {
+                var errorMessage = response.errorMessage ;
+                alert(errorMessage);
+            }
+        }
+   });
+});
+</script>
